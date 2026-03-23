@@ -1,0 +1,34 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: nulldown-postgres
+    environment:
+      POSTGRES_DB: nulldown
+      POSTGRES_USER: nulldown_user
+      POSTGRES_PASSWORD: nulldown_pass
+    ports:
+      - "5433:5432"
+    volumes:
+      - nulldown_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U nulldown_user -d nulldown"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: nulldown-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - nulldown_redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  nulldown_postgres_data:
+  nulldown_redis_data:

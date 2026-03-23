@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: nulldown
+  datasource:
+    url: jdbc:postgresql://localhost:5433/nulldown
+    username: nulldown_user
+    password: nulldown_pass
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  data:
+    redis:
+      host: localhost
+      port: 6379
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: abdullahasif012345@gmail.com
+    password: rodzudsgfaihjkhs
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+app:
+  jwt:
+    secret: mine-much-long-secret-key-at-least-32-characters-long
+    expiration: 86400000 # 24 hours in milliseconds
