@@ -1,28 +1,28 @@
 spring:
   application:
     name: nulldown
+
   datasource:
-    url: jdbc:postgresql://localhost:5433/nulldown
-    username: nulldown_user
-    password: nulldown_pass
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
     driver-class-name: org.postgresql.Driver
+
   jpa:
     hibernate:
       ddl-auto: update
-    show-sql: true
+    show-sql: false
     open-in-view: false
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
+
   data:
     redis:
-      host: localhost
-      port: 6379
+      url: ${REDIS_URL}
+
   mail:
     host: smtp.gmail.com
     port: 587
-    username: abdullahasif012345@gmail.com
-    password: rodzudsgfaihjkhs
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
     properties:
       mail:
         smtp:
@@ -32,5 +32,5 @@ spring:
 
 app:
   jwt:
-    secret: mine-much-long-secret-key-at-least-32-characters-long
-    expiration: 86400000 # 24 hours in milliseconds
+    secret: ${JWT_SECRET}
+    expiration: 86400000
