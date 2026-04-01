@@ -93,8 +93,8 @@ public class MonitorPinger {
         List<PingLog> logs = pingLogRepository
                 .findByMonitorIdOrderByCheckedAtDesc(monitorId);
 
-        if (logs.size() > 100) {
-            List<PingLog> toDelete = logs.subList(100, logs.size());
+        if (logs.size() > 10) {
+            List<PingLog> toDelete = logs.subList(10, logs.size());
             pingLogRepository.deleteAll(toDelete);
         }
     }
